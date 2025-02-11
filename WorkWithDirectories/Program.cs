@@ -3,7 +3,12 @@ using System.Collections.Generic;
 
 var currentDirectory = Directory.GetCurrentDirectory();
 var storesDirectory = Path.Combine(currentDirectory, "stores");
+var salesTotalDir = Path.Combine(currentDirectory, "salesTotalDir");
+Directory.CreateDirectory(salesTotalDir);
+
 var salesFiles = FindFiles(storesDirectory);
+
+File.WriteAllText(Path.Combine(salesTotalDir, "totals.txt"), String.Empty);
 
 IEnumerable<string> FindFiles(string folderName)
 {
@@ -20,11 +25,6 @@ IEnumerable<string> FindFiles(string folderName)
     }
 
     return salesFiles;
-}
-
-foreach (var file in salesFiles)
-{
-    Console.WriteLine(file);
 }
 
 //string fileName = $"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}sales{Path.DirectorySeparatorChar}sales.json";
